@@ -48,7 +48,7 @@ public class TicketService {
         //In case the train doesn't pass through the requested stations throw new Exception("Invalid stations");
         Station fromStation = bookTicketEntryDto.getFromStation();
         Station toStation = bookTicketEntryDto.getToStation();
-        String[] trainRoute = train.getRoute().split(" ");
+        String[] trainRoute = train.getRoute().split(",");
         int left = 0, right = trainRoute.length-1;
         boolean fromStationFound = false, toStationFound = false;
         while(left < right){
