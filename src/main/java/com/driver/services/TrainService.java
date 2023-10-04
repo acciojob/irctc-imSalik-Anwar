@@ -123,7 +123,7 @@ public class TrainService {
         //between a particular time frame both start time and end time included.
         //You can assume that the date change doesn't need to be done ie the travel will certainly happen with the same date (More details
         //in problem statement)
-        //You can also assume the seconds and mili seconds value will be 0 in a LocalTime format.
+        //You can also assume the seconds and mile seconds value will be 0 in a LocalTime format.
         int sTime = startTime.toSecondOfDay();
         int eTime = endTime.toSecondOfDay();
         int secondsPerHour = 60 * 60;
@@ -139,9 +139,8 @@ public class TrainService {
                 }
             }
         }
-        if(response.size() == 2) {
-            response.remove(response.size() - 1);
-            response.remove(response.size() - 1);
+        if(response.size() == 2){
+            return new ArrayList<>();
         }
         return response;
     }
