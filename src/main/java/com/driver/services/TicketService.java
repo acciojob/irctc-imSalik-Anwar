@@ -66,7 +66,7 @@ public class TicketService {
             right--;
         }
         if(!fromStationFound || !toStationFound){
-            throw new Exception("Invalid stations");
+            throw new RuntimeException("Invalid stations");
         }
         //otherwise book the ticket, calculate the price and other details. Save the information in corresponding DB Tables
         List<Integer> passengerIds = bookTicketEntryDto.getPassengerIds();
