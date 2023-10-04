@@ -18,6 +18,13 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int ticketId;
 
+
+    private Station fromStation;
+
+    private int totalFare;
+
+    private Station toStation;
+
     //This is also parent wrt to ticketEntity
     @ManyToMany(mappedBy = "bookedTickets",cascade = CascadeType.ALL)
     private List<Passenger> passengersList;
@@ -25,12 +32,6 @@ public class Ticket {
     @ManyToOne
     @JoinColumn
     private Train train;
-
-    private Station fromStation;
-
-    private int totalFare;
-
-    private Station toStation;
 
     public Ticket(int ticketId, List<Passenger> passengersList, Train train, Station fromStation, Station toStation,int totalFare) {
         this.ticketId = ticketId;
