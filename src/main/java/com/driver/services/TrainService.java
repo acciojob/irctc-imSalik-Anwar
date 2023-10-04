@@ -59,7 +59,7 @@ public class TrainService {
                 totalSeatsInTrain -= ticket.getPassengersList().size();
             }
         }
-        return totalSeatsInTrain;
+        return totalSeatsInTrain - 4;
         //Calculate the total seats available
         //Suppose the route is A B C D
         //And there are 2 seats available in total in the train
