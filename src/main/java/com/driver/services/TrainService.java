@@ -139,9 +139,6 @@ public class TrainService {
                 }
             }
         }
-        if(response.size() == 2){
-            return new ArrayList<>();
-        }
         return response;
     }
 
