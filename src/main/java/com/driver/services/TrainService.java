@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -124,22 +125,19 @@ public class TrainService {
         //You can assume that the date change doesn't need to be done ie the travel will certainly happen with the same date (More details
         //in problem statement)
         //You can also assume the seconds and mile seconds value will be 0 in a LocalTime format.
-        int sTime = startTime.toSecondOfDay();
-        int eTime = endTime.toSecondOfDay();
-        int secondsPerHour = 60 * 60;
-        List<Integer> response = new ArrayList<>();
-        for(Train train : trainRepository.findAll()){
-            int departureTimeOfTrain = train.getDepartureTime().toSecondOfDay();
-            String[] route = train.getRoute().split(" ");
-            int n = route.length;
-            for(int i = 0; i < n; i++){
-                if(route[i].equals(station) && (departureTimeOfTrain + (secondsPerHour * i)) >= sTime && (departureTimeOfTrain + (secondsPerHour * i)) <= eTime){
-                    response.add(train.getTrainId());
-                    break;
+        List<Train> trainList = trainRepository.findAll();
+        List<Integer> trainIdList = new ArrayList<>();
+        for (Train train: trainList){
+            String []trainRout = train.getRoute().split(",");
+            List<String> trainRoutList = Arrays.asList(trainRout);
+            if (trainRoutList.contains(station.toString())){
+                LocalTime stationArrivalTime = train.getDepartureTime().plusHours(trainRoutList.indexOf(station.toString()));
+                if(stationArrivalTime.compareTo(startTime)>=0 && stationArrivalTime.compareTo(endTime)<=0){
+                    trainIdList.add(train.getTrainId());
                 }
             }
         }
-        return response;
+        return trainIdList;
     }
 
 }
