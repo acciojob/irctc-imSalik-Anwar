@@ -139,7 +139,7 @@ public class TrainService {
                 }
             }
         }
-        if(response.size() >= 2) {
+        if(response.size() == 2) {
             response.remove(response.size() - 1);
             response.remove(response.size() - 1);
         }
