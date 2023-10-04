@@ -81,13 +81,13 @@ public class TrainService {
         String[] route = train.getRoute().split(" ");
         boolean stationFound = false;
         for(String s : route){
-            if(s.equals(station.name())){
+            if(s.equals(station.toString())){
                 stationFound = true;
                 break;
             }
         }
         if(!stationFound){
-            throw new Exception("Train is not passing from this station.");
+            throw new Exception("Train is not passing from this station");
         }
         int peopleOnboarding = 0;
         for(Ticket ticket : train.getBookedTickets()){
