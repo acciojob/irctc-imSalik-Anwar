@@ -79,7 +79,7 @@ public class TrainService {
             throw new Exception();
         }
         Train train = trainOptional.get();
-        String[] route = train.getRoute().split(" ");
+        String[] route = train.getRoute().split(",");
         boolean stationFound = false;
         for(String s : route){
             if(s.equals(station.toString())){
@@ -127,7 +127,7 @@ public class TrainService {
         List<Train> trainList = trainRepository.findAll();
         List<Integer> trainIdList = new ArrayList<>();
         for (Train train: trainList){
-            String []trainRout = train.getRoute().split(" ");
+            String []trainRout = train.getRoute().split(",");
             List<String> trainRoutList = Arrays.asList(trainRout);
             if (trainRoutList.contains(station.toString())){
                 LocalTime stationArrivalTime = train.getDepartureTime().plusHours(trainRoutList.indexOf(station.toString()));
